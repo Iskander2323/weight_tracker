@@ -55,12 +55,13 @@ extension HomePageEventPatterns on HomePageEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _AddWeightRecord value)?  addWeightRecord,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _AddWeightRecord value)?  addWeightRecord,TResult Function( _ChangeSelectedDay value)?  changeSelectedDay,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _AddWeightRecord() when addWeightRecord != null:
-return addWeightRecord(_that);case _:
+return addWeightRecord(_that);case _ChangeSelectedDay() when changeSelectedDay != null:
+return changeSelectedDay(_that);case _:
   return orElse();
 
 }
@@ -78,12 +79,13 @@ return addWeightRecord(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _AddWeightRecord value)  addWeightRecord,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _AddWeightRecord value)  addWeightRecord,required TResult Function( _ChangeSelectedDay value)  changeSelectedDay,}){
 final _that = this;
 switch (_that) {
 case _Started():
 return started(_that);case _AddWeightRecord():
-return addWeightRecord(_that);case _:
+return addWeightRecord(_that);case _ChangeSelectedDay():
+return changeSelectedDay(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -100,12 +102,13 @@ return addWeightRecord(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _AddWeightRecord value)?  addWeightRecord,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _AddWeightRecord value)?  addWeightRecord,TResult? Function( _ChangeSelectedDay value)?  changeSelectedDay,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _AddWeightRecord() when addWeightRecord != null:
-return addWeightRecord(_that);case _:
+return addWeightRecord(_that);case _ChangeSelectedDay() when changeSelectedDay != null:
+return changeSelectedDay(_that);case _:
   return null;
 
 }
@@ -122,11 +125,12 @@ return addWeightRecord(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( WeightRecordModel weightRecord)?  addWeightRecord,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( WeightRecordModel weightRecord)?  addWeightRecord,TResult Function( DateTime selectedDay)?  changeSelectedDay,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _AddWeightRecord() when addWeightRecord != null:
-return addWeightRecord(_that.weightRecord);case _:
+return addWeightRecord(_that.weightRecord);case _ChangeSelectedDay() when changeSelectedDay != null:
+return changeSelectedDay(_that.selectedDay);case _:
   return orElse();
 
 }
@@ -144,11 +148,12 @@ return addWeightRecord(_that.weightRecord);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( WeightRecordModel weightRecord)  addWeightRecord,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( WeightRecordModel weightRecord)  addWeightRecord,required TResult Function( DateTime selectedDay)  changeSelectedDay,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _AddWeightRecord():
-return addWeightRecord(_that.weightRecord);case _:
+return addWeightRecord(_that.weightRecord);case _ChangeSelectedDay():
+return changeSelectedDay(_that.selectedDay);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -165,11 +170,12 @@ return addWeightRecord(_that.weightRecord);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( WeightRecordModel weightRecord)?  addWeightRecord,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( WeightRecordModel weightRecord)?  addWeightRecord,TResult? Function( DateTime selectedDay)?  changeSelectedDay,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _AddWeightRecord() when addWeightRecord != null:
-return addWeightRecord(_that.weightRecord);case _:
+return addWeightRecord(_that.weightRecord);case _ChangeSelectedDay() when changeSelectedDay != null:
+return changeSelectedDay(_that.selectedDay);case _:
   return null;
 
 }
@@ -269,6 +275,72 @@ class __$AddWeightRecordCopyWithImpl<$Res>
   return _then(_AddWeightRecord(
 weightRecord: null == weightRecord ? _self.weightRecord : weightRecord // ignore: cast_nullable_to_non_nullable
 as WeightRecordModel,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _ChangeSelectedDay implements HomePageEvent {
+  const _ChangeSelectedDay({required this.selectedDay});
+  
+
+ final  DateTime selectedDay;
+
+/// Create a copy of HomePageEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ChangeSelectedDayCopyWith<_ChangeSelectedDay> get copyWith => __$ChangeSelectedDayCopyWithImpl<_ChangeSelectedDay>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangeSelectedDay&&(identical(other.selectedDay, selectedDay) || other.selectedDay == selectedDay));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,selectedDay);
+
+@override
+String toString() {
+  return 'HomePageEvent.changeSelectedDay(selectedDay: $selectedDay)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ChangeSelectedDayCopyWith<$Res> implements $HomePageEventCopyWith<$Res> {
+  factory _$ChangeSelectedDayCopyWith(_ChangeSelectedDay value, $Res Function(_ChangeSelectedDay) _then) = __$ChangeSelectedDayCopyWithImpl;
+@useResult
+$Res call({
+ DateTime selectedDay
+});
+
+
+
+
+}
+/// @nodoc
+class __$ChangeSelectedDayCopyWithImpl<$Res>
+    implements _$ChangeSelectedDayCopyWith<$Res> {
+  __$ChangeSelectedDayCopyWithImpl(this._self, this._then);
+
+  final _ChangeSelectedDay _self;
+  final $Res Function(_ChangeSelectedDay) _then;
+
+/// Create a copy of HomePageEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? selectedDay = null,}) {
+  return _then(_ChangeSelectedDay(
+selectedDay: null == selectedDay ? _self.selectedDay : selectedDay // ignore: cast_nullable_to_non_nullable
+as DateTime,
   ));
 }
 
@@ -395,12 +467,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  loaded,TResult Function( String message)?  success,TResult Function( String errorMessage,  List<WeightRecordModel>? weightRecords)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( DateTime? selectedDay)?  loaded,TResult Function( String message)?  success,TResult Function( String errorMessage,  List<WeightRecordModel>? weightRecords)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded();case _Success() when success != null:
+return loaded(_that.selectedDay);case _Success() when success != null:
 return success(_that.message);case _Failure() when failure != null:
 return failure(_that.errorMessage,_that.weightRecords);case _:
   return orElse();
@@ -420,12 +492,12 @@ return failure(_that.errorMessage,_that.weightRecords);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  loaded,required TResult Function( String message)  success,required TResult Function( String errorMessage,  List<WeightRecordModel>? weightRecords)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( DateTime? selectedDay)  loaded,required TResult Function( String message)  success,required TResult Function( String errorMessage,  List<WeightRecordModel>? weightRecords)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Loaded():
-return loaded();case _Success():
+return loaded(_that.selectedDay);case _Success():
 return success(_that.message);case _Failure():
 return failure(_that.errorMessage,_that.weightRecords);case _:
   throw StateError('Unexpected subclass');
@@ -444,12 +516,12 @@ return failure(_that.errorMessage,_that.weightRecords);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  loaded,TResult? Function( String message)?  success,TResult? Function( String errorMessage,  List<WeightRecordModel>? weightRecords)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( DateTime? selectedDay)?  loaded,TResult? Function( String message)?  success,TResult? Function( String errorMessage,  List<WeightRecordModel>? weightRecords)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded();case _Success() when success != null:
+return loaded(_that.selectedDay);case _Success() when success != null:
 return success(_that.message);case _Failure() when failure != null:
 return failure(_that.errorMessage,_that.weightRecords);case _:
   return null;
@@ -527,33 +599,67 @@ String toString() {
 
 
 class _Loaded implements HomePageState {
-  const _Loaded();
+  const _Loaded({this.selectedDay});
   
 
+ final  DateTime? selectedDay;
 
-
+/// Create a copy of HomePageState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.selectedDay, selectedDay) || other.selectedDay == selectedDay));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,selectedDay);
 
 @override
 String toString() {
-  return 'HomePageState.loaded()';
+  return 'HomePageState.loaded(selectedDay: $selectedDay)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$LoadedCopyWith<$Res> implements $HomePageStateCopyWith<$Res> {
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
+@useResult
+$Res call({
+ DateTime? selectedDay
+});
 
 
+
+
+}
+/// @nodoc
+class __$LoadedCopyWithImpl<$Res>
+    implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(this._self, this._then);
+
+  final _Loaded _self;
+  final $Res Function(_Loaded) _then;
+
+/// Create a copy of HomePageState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? selectedDay = freezed,}) {
+  return _then(_Loaded(
+selectedDay: freezed == selectedDay ? _self.selectedDay : selectedDay // ignore: cast_nullable_to_non_nullable
+as DateTime?,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
