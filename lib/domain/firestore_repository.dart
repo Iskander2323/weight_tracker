@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:weight_tracker/data/api/firebase_api.dart';
 
 class FirestoreRepository {
@@ -5,11 +7,11 @@ class FirestoreRepository {
 
   Future<bool> addWeightRecord(weightRecord) async {
     try {
-       final isSuccess = await _firebaseApi.addWeightRecord(weightRecord);
-       return isSuccess;
-    }catch (e) {
+      final isSuccess = await _firebaseApi.addWeightRecord(weightRecord);
+      return isSuccess;
+    } catch (e) {
+      log(e.toString(), name: 'Firestore Repository - addWeightRecord');
       rethrow;
     }
   }
-  
 }
