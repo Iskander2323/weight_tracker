@@ -5,11 +5,33 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:weight_tracker/data/model/weight_record_model.dart';
 
 class FirebaseApi {
-   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-   Future<bool> addWeightRecord(WeightRecordModel weightRecord) async {
+  Future<List<WeightRecordModel>> getAllWeightRecords() async {
     try {
-      final result = await _firestore.collection('weight_records').add(weightRecord.toMap());
+      final querySnapshot = await _firestore.collection('weight_records').get();
+
+      List<WeightRecordModel> weightRecords = [];
+
+      for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+        final data = doc.data() as Map<String, dynamic>;
+        if ((data['weight'] as double) == 0) {
+          continue;
+        }
+        weightRecords.add(WeightRecordModel.fromMap(data));
+      }
+      return weightRecords;
+    } catch (e) {
+      log(e.toString(), name: 'FirebaseApi - getAllWeightRecords');
+      rethrow;
+    }
+  }
+
+  Future<bool> addWeightRecord(WeightRecordModel weightRecord) async {
+    try {
+      final result = await _firestore
+          .collection('weight_records')
+          .add(weightRecord.toMap());
       log('Weight record added successfully with ID: ${result.id}');
       return true;
     } on FirebaseException catch (e) {
@@ -20,5 +42,4 @@ class FirebaseApi {
       throw Exception('An unexpected error occurred: ${e.toString()}');
     }
   }
-
 }
