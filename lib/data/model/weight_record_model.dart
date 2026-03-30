@@ -18,4 +18,9 @@ class WeightRecordModel {
       'createdAt': Timestamp.fromDate(createdAt),
     };
   }
+
+  WeightRecordModel.fromMap(Map<String, dynamic> data)
+    : weight = data['weight'] as double,
+      date = (data['date'] as Timestamp).toDate(),
+      createdAt = (data['createdAt'] as Timestamp).toDate();
 }
