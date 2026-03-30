@@ -2,10 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:weight_tracker/common/custom_primary_button.dart';
 import 'package:weight_tracker/data/model/weight_record_model.dart';
+import 'package:weight_tracker/routes.dart';
 import 'package:weight_tracker/ui/home_page/bloc/home_page_bloc.dart';
 import 'package:weight_tracker/ui/extensions/hidekeyboard_context_extension.dart';
 import 'package:weight_tracker/ui/home_page/widget/select_date_widget.dart';
@@ -162,6 +164,12 @@ class _HomePageBodyState extends State<HomePageBody> {
                         ),
                       ),
                     ],
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.goNamed(AppRouteNames.AllRecords.name);
+                    },
+                    child: Text('All Records'),
                   ),
                   const Spacer(),
                   CustomPrimaryButton(
